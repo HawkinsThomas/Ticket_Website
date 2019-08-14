@@ -3,4 +3,22 @@ import ReactDOM from 'react-dom';
 import Menu from 'components/Menu';
 import 'css/bootstrap.min.css';
 
-ReactDOM.render(<Menu />, document.getElementById('menu'));
+const navItems = [
+  {
+    name: 'Home',
+    isActive: false,
+    href: '/',
+  },
+  {
+    name: 'Login',
+    isActive: true,
+    href: '/login.html',
+  },
+  {
+    name: 'Register',
+    isActive: false,
+    href: '/register.html',
+  },
+];
+
+ReactDOM.render(<Menu items={navItems} />, document.getElementById('menu'));
