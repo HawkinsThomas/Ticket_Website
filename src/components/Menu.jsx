@@ -1,17 +1,31 @@
 import React, { Component } from 'react';
 
-export default function Menu(props) {
+export default class Menu extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      items: this.props.items,
+    };
+  }
+
+  render() {
+    const items = this.state.items.map((item) => {
+      return (
+        <NavItem active={item.isActive} name={item.name} href={item.href} />
+      );
+    });
+    return (
+      <ul className="nav nav-pills">
+        {items}
+      </ul>
+    );
+  }
+}
+
+function NavItem(props) {
   return (
-    <ul className="nav flex-column">
-      <li className="nav-item">
-        <a className="nav-link active" href="index.html">Home</a>
-      </li>
-      <li className="nav-item">
-        <a className="nav-link active" href="login.html">Login</a>
-      </li>
-      <li className="nav-item">
-        <a className="nav-link active" href="patients.html">Patients</a>
-      </li>
-    </ul>
+    <li className="nav-item">
+      <a className={props.active ? 'nav-link active' : 'nav-link'} href={props.href}>{props.name}</a>
+    </li>
   );
 }
