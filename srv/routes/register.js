@@ -1,18 +1,23 @@
+const argon2 = require('argon2');
 const { writeTable } = require('../db/writeTable');
+const { userExists } = require('../db/userExists');
 
 module.exports = {
-  login: (req, res) => {
-    const query = `INSERT INTO user VALUES ('${req.body.username}', '${req.body.password}');`;
-    writeTable(query)
-      .catch(error => res.json(error))
-      .then((data) => {
-        if (data.length === 0) {
-          res.sendStatus(403);
-        } else if (data.tableData[0][0] === req.body.password) {
-          req.session.username = req.body.username;
-          res.redirect('/');
+  register: (req, res) => {
+    userExists(req.body.username)
+      .then((exists) => {
+        if (!exists) {
+          argon2.hash(req.body.password)
+            .then((pwHash) => {
+              const query = `INSERT INTO user VALUES ('${req.body.username}', '${pwHash}');`;
+              writeTable(query)
+                .catch(error => res.json(error))
+                .then((data) => {
+                  res.sendStatus(200);
+                });
+            });
         } else {
-          res.sendStatus(403);
+          res.json({ error: 'username already exists' });
         }
       });
   },

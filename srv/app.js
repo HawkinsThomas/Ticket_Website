@@ -4,6 +4,7 @@ const session = require('express-session');
 const mysql = require('mysql');
 const mariadb = require('mariadb');
 const path = require('path');
+const crypto = require('crypto');
 require('dotenv').config();
 
 const app = express();
@@ -81,7 +82,7 @@ app.use(authenticate);
 app.get('/', getHomePage);
 app.get('/allUsers', getAllUsers);
 app.post('/login', login);
-// app.post('/register', register);
+app.post('/register', register);
 
 // set the app to listen on the port
 app.listen(process.env.HTTP_PORT, () => {
