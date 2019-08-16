@@ -6,7 +6,6 @@ module.exports = {
       res.redirect('/login.html');
     } else {
       const query = `SELECT * FROM ticket WHERE username='${req.session.username}' ORDER BY dateCreated DESC;`;
-      console.log(query);
       getTable(query)
         .catch(err => console.log(err))
         .then(data => res.json(data));
