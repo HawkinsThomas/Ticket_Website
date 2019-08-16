@@ -7,7 +7,7 @@ import 'css/bootstrap.min.css';
 const navItems = [
   {
     name: 'Home',
-    isActive: true,
+    isActive: false,
     href: '/',
   },
   {
@@ -27,7 +27,7 @@ const navItems = [
   },
   {
     name: 'My Tickets',
-    isActive: false,
+    isActive: true,
     href: '/myTickets.html',
   },
 ];
@@ -41,15 +41,16 @@ const formActions = {
 
 ReactDOM.render(<Menu items={navItems} />, document.getElementById('menu'));
 
-fetch('/allUsers')
+fetch('/myTickets')
   .then(response => response.json())
   .then((data) => {
     ReactDOM.render(<Table
       border="1"
       tableData={data.tableData}
       tableHeaders={data.tableHeaders}
-      caption="All Users"
+      caption="My Tickets"
       hasForm="False"
       formActions={formActions}
-    />, document.getElementById('users'));
+    />, document.getElementById('tickets'));
   });
+
