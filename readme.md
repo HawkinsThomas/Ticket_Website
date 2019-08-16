@@ -19,4 +19,13 @@ SESSION_SECRET=secret
   2. npm run build
   3. npm run start-app
 
+  * open the webpage
+  * click register in the nav
+  * register with a new username and password
+  * verify your username is displayed in the table on index.html
+  * click create ticket in the nav
+  * submit a ticket
+  * click My Tickets in the nav
+  * verify your Ticket is displayed in the table
+
   * please reach out to me if you have any questions
