@@ -30,13 +30,13 @@ if (process.env.MARIADB === 'TRUE') {
     database: process.env.DB_DATABASE,
   };
   console.log(mdb);
-  mariadb.getConnection(mdb)
+  mariadb.createConnection(mdb)
     .then((db) => {
       console.log('Connected to database');
       global.db = db;
     })
     .catch((err) => {
-      throw err;
+      console.log(err);
     });
 } else {
   const db = mysql.createConnection({
