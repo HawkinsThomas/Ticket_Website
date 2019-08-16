@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Menu from 'components/Menu';
-import Table from 'components/Table';
+// import Table from 'components/Table';
 import 'css/bootstrap.min.css';
 
 const navItems = [
@@ -22,23 +22,4 @@ const navItems = [
   },
 ];
 
-const formActions = {
-  add: '/',
-  update: '/',
-  delete: '/',
-};
-
 ReactDOM.render(<Menu items={navItems} />, document.getElementById('menu'));
-
-fetch('http://localhost:4000/allUsers')
-  .then(response => response.json())
-  .then((data) => {
-    ReactDOM.render(<Table
-      border="1"
-      tableData={data.tableData}
-      tableHeaders={data.tableHeaders}
-      caption="All Users"
-      formActions={formActions}
-    />,
-    document.getElementById('table'));
-  });
