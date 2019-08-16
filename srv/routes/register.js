@@ -13,7 +13,7 @@ module.exports = {
               writeTable(query)
                 .catch(error => res.json(error))
                 .then((data) => {
-                  res.sendStatus(200);
+                  res.redirect('/');
                 });
             });
         } else {

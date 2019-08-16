@@ -16,6 +16,7 @@ export default class Table extends Component {
         update: this.props.formActions.update,
         delete: this.props.formActions.delete,
       },
+      hasForm: (this.props.hasForm === 'True'),
       formVisible: false,
     };
     this.onClickAdd = this.onClickAdd.bind(this);
@@ -49,7 +50,7 @@ export default class Table extends Component {
           {header}
           {rows}
         </table>
-        <button type="button" onClick={this.onClickAdd}>Add Row</button>
+        {this.state.hasForm ? <button type="button" onClick={this.onClickAdd}>Add Row</button> : null }
         <div id={this.state.id || 'form'}>
         {this.state.formVisible ? <Form action={this.state.formActions.add} method="post" fields={fields} /> : null }
         </div>

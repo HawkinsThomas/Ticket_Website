@@ -7,6 +7,11 @@
     background: #6f2b99;
     background: linear-gradient(to right, #6f2b99, #33AEFF);
   }
+
+  #register-body {
+    background: #6f2b99;
+    background: linear-gradient(to right, #f21000, #f5a133);
+  }
   
   .card-signin {
     border: 0;
