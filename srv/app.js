@@ -23,14 +23,14 @@ const dist = path.resolve('dist');
 
 
 if (process.env.MARIADB === 'TRUE') {
-  const mdb = mariadb.createPool({
+  const mdb = {
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_DATABASE,
-    connectionLimit: 5,
-  });
-  mdb.getConnection()
+  };
+  console.log(mdb);
+  mariadb.getConnection(mdb)
     .then((db) => {
       console.log('Connected to database');
       global.db = db;
